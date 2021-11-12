@@ -61,7 +61,9 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Username cannot be empty";
-                        }
+                        } else if (value == null || value.length < 4) {
+                          return "Username length should be atleast 4 ";
+                        } 
 
                         return null;
                       },
