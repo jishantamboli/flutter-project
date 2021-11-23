@@ -13,8 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       themeMode: ThemeMode.light,
-      theme: MyTheme.LightTheme(context),
-      darkTheme: MyTheme.DarkTheme(context),
+      theme: MyTheme.WhiteTheme(context),
       debugShowCheckedModeBanner: false,
       initialRoute: MyRoutes.HomeRoute,
       routes: {
