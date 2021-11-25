@@ -28,8 +28,8 @@ class HomeDetailPage extends StatelessWidget {
                       MaterialStateProperty.all(MyTheme.darkBlueshColor),
                       shape: MaterialStateProperty.all(StadiumBorder(),)
                     ),
-                    child: "Buy".text.make(),
-                  ).wh(100, 50)
+                    child: "Add to cart".text.make(),
+                  ).wh(120, 50)
                 ],
               ).p32(),
       ),
@@ -54,6 +54,7 @@ class HomeDetailPage extends StatelessWidget {
                    catelog.name.text.xl4.color(MyTheme.darkBlueshColor).bold.make(),
             catelog.desc.text.xl.color(Colors.grey).make(),
             10.heightBox,
+            'Labore clita ipsum ea kasd ea. Labore ipsum amet lorem ipsum at voluptua elitr rebum clita, ipsum sadipscing takimata lorem gubergren sea nonumy elitr sed. Sed eos ea diam duo amet sanctus et ea no. No lorem et no lorem. Tempor ut dolores clita kasd at at diam, est sanctus.'.text.color(Colors.grey).make().p16()       
              ],
               ).py64(),
               ),

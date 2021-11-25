@@ -68,14 +68,14 @@ class CatelogItem extends StatelessWidget {
                     MaterialStateProperty.all(MyTheme.darkBlueshColor),
                     shape: MaterialStateProperty.all(StadiumBorder(),)
                   ),
-                  child: "Buy".text.make(),
+                  child: "Add to cart".text.make(),
                 )
               ],
             ).pOnly(right: 8.0)
           ],
         ))
       ],
-    )).white.roundedLg.square(150).make().py16();
+    )).white.roundedLg.square(150).make().py8();
   }
 }
 
