@@ -8,7 +8,7 @@ class CatelogHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      "Catelog App".text.xl5.bold.color(MyTheme.darkBlueshColor).make(),
+      "Catelog App".text.xl5.bold.color(context.theme.accentColor).make(),
       "Trending Products".text.xl2.make(),
     ]);
   }

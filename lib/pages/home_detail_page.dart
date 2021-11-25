@@ -13,9 +13,10 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      appBar: AppBar(backgroundColor: Colors.transparent),
+      backgroundColor: context.canvasColor,
       bottomNavigationBar:   Container(
-        color: Colors.white,
+        color: context.cardColor,
               child: ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
                 buttonPadding: EdgeInsets.zero,
@@ -25,7 +26,7 @@ class HomeDetailPage extends StatelessWidget {
                     onPressed: () {},
                     style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all(MyTheme.darkBlueshColor),
+                      MaterialStateProperty.all(context.theme.buttonColor),
                       shape: MaterialStateProperty.all(StadiumBorder(),)
                     ),
                     child: "Add to cart".text.make(),
@@ -47,16 +48,16 @@ class HomeDetailPage extends StatelessWidget {
               arcType: VxArcType.CONVEY,
               edge: VxEdge.TOP,
               child: Container(
-              color: Colors.white,
+              color:context.cardColor,
               width: context.screenWidth,
               child: Column(
                 children: [
-                   catelog.name.text.xl4.color(MyTheme.darkBlueshColor).bold.make(),
+                   catelog.name.text.xl4.color(context.accentColor).bold.make(),
             catelog.desc.text.xl.color(Colors.grey).make(),
             10.heightBox,
             'Labore clita ipsum ea kasd ea. Labore ipsum amet lorem ipsum at voluptua elitr rebum clita, ipsum sadipscing takimata lorem gubergren sea nonumy elitr sed. Sed eos ea diam duo amet sanctus et ea no. No lorem et no lorem. Tempor ut dolores clita kasd at at diam, est sanctus.'.text.color(Colors.grey).make().p16()       
              ],
-              ).py64(),
+              ).py32(),
               ),
             ))
         ],
