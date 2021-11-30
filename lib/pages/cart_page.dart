@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project1/core/store.dart';
 import 'package:flutter_project1/models/cart.dart';
-import 'package:flutter_project1/widget/themes.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
@@ -31,7 +30,7 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
@@ -54,15 +53,8 @@ class _CartTotal extends StatelessWidget {
   }
 }
 
-class _Cartlist extends StatefulWidget {
-  const _Cartlist({Key? key}) : super(key: key);
-
-  @override
-  State<_Cartlist> createState() => _CartlistState();
-}
-
-class _CartlistState extends State<_Cartlist> {
-  final _cart = CartModel();
+class _Cartlist extends StatelessWidget {
+    final CartModel _cart = (VxState.store as MyStore).cart;
   @override
   Widget build(BuildContext context) {
     return _cart.items.isEmpty
@@ -75,7 +67,6 @@ class _CartlistState extends State<_Cartlist> {
                 icon: Icon(Icons.remove_circle_outline),
                 onPressed: () {
                   _cart.remove(_cart.items[index]);
-                  setState(() {});
                 },
               ),
               title: _cart.items[index].name.text.make(),
