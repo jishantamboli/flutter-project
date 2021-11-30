@@ -1,6 +1,13 @@
 import 'dart:convert';
 
 class CatelogModel {
+
+   static final catModel = CatelogModel._internal();
+
+  CatelogModel._internal();
+
+  factory CatelogModel() => catModel;
+
   static List<Item> items = [
     Item(
         id: 1,

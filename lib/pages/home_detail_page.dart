@@ -13,8 +13,9 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(backgroundColor: Colors.transparent),
-      backgroundColor: context.canvasColor,
+      backgroundColor: Colors.grey.shade100,
       bottomNavigationBar:   Container(
         color: context.cardColor,
               child: ButtonBar(
@@ -26,7 +27,7 @@ class HomeDetailPage extends StatelessWidget {
                     onPressed: () {},
                     style: ButtonStyle(
                       backgroundColor:
-                      MaterialStateProperty.all(context.theme.buttonColor),
+                      MaterialStateProperty.all(Colors.deepPurple),
                       shape: MaterialStateProperty.all(StadiumBorder(),)
                     ),
                     child: "Add to cart".text.make(),
@@ -55,9 +56,9 @@ class HomeDetailPage extends StatelessWidget {
                    catelog.name.text.xl4.color(context.accentColor).bold.make(),
             catelog.desc.text.xl.color(Colors.grey).make(),
             10.heightBox,
-            'Labore clita ipsum ea kasd ea. Labore ipsum amet lorem ipsum at voluptua elitr rebum clita, ipsum sadipscing takimata lorem gubergren sea nonumy elitr sed. Sed eos ea diam duo amet sanctus et ea no. No lorem et no lorem. Tempor ut dolores clita kasd at at diam, est sanctus.'.text.color(Colors.grey).make().p16()       
+            'Labore clita ipsum ea kasd ea. Labore ipsum amet lorem ipsum at voluptua elitr rebum clita, ipsum sadipscing takimata lorem gubergren sea nonumy elitr sed. Tempor ut dolores clita kasd at at diam, est sanctus.'.text.color(Colors.grey).make().p16()       
              ],
-              ).py32(),
+              ).py24(),
               ),
             ))
         ],
