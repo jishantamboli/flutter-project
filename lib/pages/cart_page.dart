@@ -27,7 +27,6 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartTotal extends StatelessWidget {
-  
   const _CartTotal({Key? key}) : super(key: key);
 
   @override
@@ -46,8 +45,7 @@ class _CartTotal extends StatelessWidget {
                   SnackBar(content: "Buying not supported yet ".text.make()));
             },
             style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(Colors.deepPurple)),
+                backgroundColor: MaterialStateProperty.all(Colors.deepPurple)),
             child: "Buy".text.white.make(),
           ).w32(context)
         ],
@@ -67,16 +65,21 @@ class _CartlistState extends State<_Cartlist> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _cart.items.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
-        trailing: IconButton(
-          icon: Icon(Icons.remove_circle_outline),
-          onPressed: () {},
-        ),
-        title: _cart.items[index].name.text.make(),
-      ),
-    );
+    return _cart.items.isEmpty
+        ? "OOOpppsss !!!!  Nothing to show".text.xl2.makeCentered()
+        : ListView.builder(
+            itemCount: _cart.items.length,
+            itemBuilder: (context, index) => ListTile(
+              leading: Icon(Icons.done),
+              trailing: IconButton(
+                icon: Icon(Icons.remove_circle_outline),
+                onPressed: () {
+                  _cart.remove(_cart.items[index]);
+                  setState(() {});
+                },
+              ),
+              title: _cart.items[index].name.text.make(),
+            ),
+          );
   }
 }
