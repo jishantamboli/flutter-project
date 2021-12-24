@@ -10,7 +10,10 @@ class CatelogList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return !context.isMobile
+    ? GridView.builder(
+      // ignore: prefer_const_constructors
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20.0),
         shrinkWrap: true,
         itemCount: CatelogModel.items.length,
         itemBuilder: (context, index) {
@@ -19,15 +22,29 @@ class CatelogList extends StatelessWidget {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomeDetailPage(
-                    catelog: catelog,
-                  ),
-                )),
-            child: CatelogItem(
-              catelog: catelog,
+                  builder: (context) => HomeDetailPage(catelog: catelog,),
+                ),
             ),
+            child: CatelogItem(catelog: catelog),
           );
-        });
+        },
+    )
+   : ListView.builder(
+      shrinkWrap: true,
+        itemCount: CatelogModel.items.length,
+        itemBuilder: (context, index) {
+          final catelog = CatelogModel.items[index];
+          return InkWell(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeDetailPage(catelog: catelog,),
+                ),
+            ),
+            child: CatelogItem(catelog: catelog),
+          );
+        },
+    );
   }
 }
 
@@ -40,9 +57,7 @@ class CatelogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VxBox(
-        child: Row(
-      children: [
+    var children2 = [
         Hero(
           tag: Key(catelog.id.toString()),
           child: CatelogImage(
@@ -61,14 +76,19 @@ class CatelogItem extends StatelessWidget {
               alignment: MainAxisAlignment.spaceBetween,
               buttonPadding: EdgeInsets.zero,
               children: [
-                "\$${catelog.price}".text.bold.xl.make(),
+                "₹${catelog.price}".text.color(Colors.red).bold.xl.make(),
                 AddToCart(catelog: catelog)
               ],
             ).pOnly(right: 8.0)
           ],
-        ))
-      ],
-    )).color(context.cardColor).roundedLg.square(140).make().py8();
+        ).p(context.isMobile ? 0 : 16)
+        )
+      ];
+    return VxBox(
+        child: context.isMobile?Row(
+      children: children2,
+    ):Column(children: children2,)
+    ).color(context.cardColor).roundedLg.square(140).make().py8();
   }
 }
 

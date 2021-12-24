@@ -11,8 +11,8 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: "Cart".text.make(),
+        backgroundColor: Colors.red,
+        title: "Cart".text.color(Colors.white).make(),
       ),
       body: Column(
         children: [
@@ -33,22 +33,26 @@ class _CartTotal extends StatelessWidget {
     VxState.watch(context, on: [Removemutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
-      height: 200,
+      height: 80,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-         "\$${_cart.totalPrice}"
-         .text.xl5.color(Colors.red.shade800).make(),
+         "₹${_cart.totalPrice}"
+         .text.bold.xl4.color(Colors.red).make(),
           30.widthBox,
           ElevatedButton(
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: "Buying not supported yet ".text.make()));
+                  SnackBar(content: "Booking not supported yet !!".text.make()));
             },
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.deepPurple)),
-            child: "Buy".text.white.make(),
-          ).w32(context)
+                backgroundColor: MaterialStateProperty.all(Colors.red),
+                padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 45,vertical: 12)),
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)))
+
+                ),
+            child: "Book".text.xl.white.make(),
+          )
         ],
       ),
     );

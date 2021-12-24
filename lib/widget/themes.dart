@@ -4,7 +4,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 class MyTheme {
   static ThemeData LightTheme(BuildContext context) => ThemeData(
-      primarySwatch: Colors.deepPurple,
+      primarySwatch: Colors.grey,
       fontFamily: GoogleFonts.poppins().fontFamily,
       cardColor: Colors.white,
       canvasColor: creamcolor,
@@ -18,7 +18,7 @@ class MyTheme {
       ));
 
   static ThemeData darkTheme(BuildContext context) => ThemeData(
-       brightness: Brightness.dark,
+      brightness: Brightness.dark,
       fontFamily: GoogleFonts.poppins().fontFamily,
       cardColor: Colors.black,
       canvasColor: darkcreamColor,
@@ -29,8 +29,8 @@ class MyTheme {
         elevation: 0.0,
         iconTheme: IconThemeData(color: Colors.white),
         textTheme: Theme.of(context).textTheme.copyWith(
-          headline6: context.textTheme.headline6!.copyWith(color: Colors.white 
-          )),
+            headline6:
+                context.textTheme.headline6!.copyWith(color: Colors.white)),
       ));
 
   //colors
@@ -38,4 +38,5 @@ class MyTheme {
   static Color darkBlueshColor = Color(0xff403b50);
   static Color darkcreamColor = Vx.gray900;
   static Color lightblueshColor = Vx.indigo500;
+  static Color redtheme = Color.fromRGBO(245, 56, 71, 100);
 }

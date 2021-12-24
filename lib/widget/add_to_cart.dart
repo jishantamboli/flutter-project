@@ -16,22 +16,22 @@ class AddToCart extends StatelessWidget {
   Widget build(BuildContext context) {
     VxState.watch(context,on: [AddMutation, Removemutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
-    bool isInCart = _cart.items.contains(catelog) ?? false;
-    return ElevatedButton(
+    bool isInCart = _cart.items.contains(catelog);
+    return ElevatedButton( 
       onPressed: () {
         if (!isInCart) {
           AddMutation(item: catelog);
         }
       },
       style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.deepPurple),
+          backgroundColor: MaterialStateProperty.all(Colors.white),
           shape: MaterialStateProperty.all(
             StadiumBorder(),
           )),
       child: isInCart
-          ? Icon(Icons.done)
+          ? Icon(CupertinoIcons.heart_fill, color: Colors.red,)
           : Icon(
-              CupertinoIcons.cart_badge_plus,
+              CupertinoIcons.heart
             ),
     );
   }

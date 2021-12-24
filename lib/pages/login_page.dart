@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project1/pages/home_page.dart';
 import 'package:flutter_project1/utils/routes.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:velocity_x/src/extensions/string_ext.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -27,6 +29,13 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  var signstyle =
+      TextStyle(color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold);
+  var defaulttextstyle = TextStyle(color: Colors.grey);
+  var linktext = TextStyle(
+    color: Colors.blue,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -37,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Image.asset("assets/images/hey.png", fit: BoxFit.cover),
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               Text(
                 "Welcome",
@@ -50,8 +59,8 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20.0,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 16.0, horizontal: 32.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 32.0),
                 child: Column(
                   children: [
                     TextFormField(
@@ -59,14 +68,15 @@ class _LoginPageState extends State<LoginPage> {
                         hintText: "Enter Username",
                         labelText: "Username",
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
+                      validator: (Uservalue) {
+                        if (Uservalue == null || Uservalue.isEmpty) {
                           return "Username cannot be empty";
-                        } else if (value == null || value.length < 4) {
+                        } else if (Uservalue == null || Uservalue.length < 1) {
                           return "Username length should be atleast 4 ";
-                        } 
-
-                        return null;
+                        } else if (Uservalue != "jishan") {
+                          return "Wrong Username";
+                        }
+                        // return null;
                       },
                     ),
                     TextFormField(
@@ -80,24 +90,25 @@ class _LoginPageState extends State<LoginPage> {
                           return "Password cannot be empty";
                         } else if (value.length < 6) {
                           return "Password Length should be atleast 6";
+                        } else if (value != "jishan") {
+                          return "Wrong Password";
                         }
-
                         return null;
                       },
                     ),
                     SizedBox(
-                      height: 40.0,
+                      height: 30.0,
                     ),
                     Material(
-                      color:Colors.deepPurple,
+                      color: Colors.red,
                       borderRadius:
-                          BorderRadius.circular(changeButton ? 20 : 8),
+                          BorderRadius.circular(changeButton ? 20 : 15),
                       child: InkWell(
                           onTap: () => moveToHome(context),
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),
-                            width: changeButton ? 50 : 150,
-                            height: 50,
+                            width: changeButton ? 50 : 120,
+                            height: 40,
                             alignment: Alignment.center,
                             child: changeButton
                                 ? Icon(
@@ -113,6 +124,28 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                           )),
                     ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    Text("Or"),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Don't have an account? "),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, MyRoutes.SignUpRoute);
+                          },
+                          child: Text(
+                            "SignUp",
+                            style: signstyle,
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               )
