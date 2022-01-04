@@ -1,15 +1,17 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project1/core/store.dart';
-import 'package:flutter_project1/pages/account_page.dart';
-import 'package:flutter_project1/pages/booking_page.dart';
-import 'package:flutter_project1/pages/cart_page.dart';
-import 'package:flutter_project1/pages/home_page.dart';
-import 'package:flutter_project1/pages/login_page.dart';
-import 'package:flutter_project1/pages/signup_page.dart';
-import 'package:flutter_project1/pages/spalshScreen.dart';
-import 'package:flutter_project1/utils/routes.dart';
-import 'package:flutter_project1/widget/themes.dart';
+import 'package:provider/src/provider.dart';
+import 'core/store.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:NearMe/pages/account_page.dart';
+import 'package:NearMe/pages/booking_page.dart';
+import 'package:NearMe/pages/cart_page.dart';
+import 'package:NearMe/pages/home_page.dart';
+import 'package:NearMe/pages/login_page.dart';
+import 'package:NearMe/pages/signup_page.dart';
+import 'package:NearMe/pages/spalshScreen.dart';
+import 'package:NearMe/utils/routes.dart';
+import 'package:NearMe/widget/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,22 +31,23 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: MyRoutes.SplashRoute,
       routes: {
-        "/": (context) => Splash(),
+        // "/": (context) => Splash(),
         MyRoutes.HomeRoute: (context) => HomePage(),
         MyRoutes.LoginRoute: (context) => LoginPage(),
         MyRoutes.CartRoute: (context) => CartPage(),
         MyRoutes.BookingRoute: (context) => Booking_page(),
         MyRoutes.AccountRoute: (context) => AccountPage(),
-        MyRoutes.SignUpRoute: (context) => SignUpPage(onSignInAno: (UserCredential) {  },),
+        MyRoutes.SignUpRoute: (context) => SignUpPage(),
         MyRoutes.SplashRoute: (context) => AnimatedSplashScreen(
-          splash: Splash(),
-          duration: 100,
-          splashTransition: SplashTransition.fadeTransition,
-          backgroundColor: Colors.white,
-          nextScreen: HomePage(),
-          splashIconSize: 200,
-        ),
+              splash: Splash(),
+              duration: 50,
+              splashTransition: SplashTransition.fadeTransition,
+              backgroundColor: Colors.white,
+              nextScreen: LoginPage(),
+              splashIconSize: 200,
+            ),
       },
+     
     );
   }
 }

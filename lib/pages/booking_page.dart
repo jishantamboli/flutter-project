@@ -1,8 +1,9 @@
+import 'package:NearMe/widget/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project1/core/store.dart';
-import 'package:flutter_project1/models/cart.dart';
-import 'package:flutter_project1/models/catelog.dart';
-import 'package:flutter_project1/utils/routes.dart';
+import 'package:NearMe/core/store.dart';
+import 'package:NearMe/models/cart.dart';
+import 'package:NearMe/models/catelog.dart';
+import 'package:NearMe/utils/routes.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -19,7 +20,7 @@ class _Booking_pageState extends State<Booking_page> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: MyTheme.redtheme,
         title: "My Bookings".text.color(Colors.white).make(),
       ),
       body: SafeArea(
@@ -29,7 +30,14 @@ class _Booking_pageState extends State<Booking_page> {
            children: [
                if (CatelogModel.items != null && CatelogModel.items.isNotEmpty)
                 // ignore: prefer_const_constructors
-               Text("Ooppppsss, No bookings here !!!",textScaleFactor: 1.5,).centered().p64()
+              SizedBox(
+                height: 600,
+                width: 500,
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Center(child: Image.asset("assets/images/house2.gif", height: 800, width: 800)),
+                ),
+              )
               else
                 CircularProgressIndicator().centered().expand(),
            ],

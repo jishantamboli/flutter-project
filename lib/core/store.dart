@@ -1,6 +1,6 @@
 import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter_project1/models/cart.dart';
-import 'package:flutter_project1/models/catelog.dart';
+import 'package:NearMe/models/cart.dart';
+import 'package:NearMe/models/catelog.dart';
 
 class MyStore extends VxStore {
   CatelogModel catelog;

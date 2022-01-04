@@ -1,52 +1,48 @@
+import 'package:NearMe/widget/themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project1/pages/home_page.dart';
-import 'package:flutter_project1/pages/login_page.dart';
-import 'package:flutter_project1/utils/routes.dart';
+import 'package:NearMe/pages/home_page.dart';
+import 'package:NearMe/pages/login_page.dart';
+import 'package:NearMe/utils/routes.dart';
 import 'package:velocity_x/src/extensions/string_ext.dart';
 import 'package:velocity_x/src/flutter/padding.dart';
 
 class SignUpPage extends StatefulWidget {
-  final Function(User) onSignInAno;
-  SignUpPage({required this.onSignInAno});
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  User? user;
+  // User? user;
   var signstyle =
       TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
   var loginstyle =
       TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
+  var signupstyle = TextStyle(
+      color: MyTheme.redtheme, fontSize: 18, fontWeight: FontWeight.bold);
   final _formkey = GlobalKey<FormState>();
 
-  moveToLogin(BuildContext context) async {
-    if (_formkey.currentState!.validate()) {
-      setState(() {});
-      await Navigator.pushNamed(context, MyRoutes.HomeRoute);
-    }
-  }
+  // moveToLogin(BuildContext context) async {
+  //   if (_formkey.currentState!.validate()) {
+  //     setState(() {});
+  //     await Navigator.pushNamed(context, MyRoutes.HomeRoute);
+  //   }
+  // }
 
   String error = "";
   final User_email = new TextEditingController();
   final User_password = new TextEditingController();
   final confirmpassword = new TextEditingController();
 
-  Future<void> LoginAno() async {
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInAnonymously();
-    print(userCredential.user);
-    widget.onSignInAno;
-  }
-
-  Future<void> SingUp() async {
+  Future<String?> SingUp() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: User_email.text, password: User_password.text);
-      Navigator.pushNamed(context, MyRoutes.HomeRoute);
+      await Future.delayed(Duration(seconds: 1));
+
+      Navigator.pushNamed(context(), MyRoutes.HomeRoute);
     } on FirebaseAuthException catch (e) {
       setState(() {
         error = e.message!;
@@ -65,14 +61,14 @@ class _SignUpPageState extends State<SignUpPage> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(hintText: "Enter Email ", labelText: "Email"),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return "Email can't be empty";
-        } else if (value.length < 6) {
-          return "Email should be atleast 6 characters";
-        }
-        return null;
-      },
+      // validator: (value) {
+      //   if (value == null || value.isEmpty) {
+      //     return "Email can't be empty";
+      //   } else if (value.length < 6) {
+      //     return "Email should be atleast 6 characters";
+      //   }
+      //   return null;
+      // },
     );
     final passwordfield = TextFormField(
       autofocus: false,
@@ -87,38 +83,39 @@ class _SignUpPageState extends State<SignUpPage> {
         hintText: "Enter Password",
         labelText: "Password",
       ),
-      validator: (passvalue) {
-        if (passvalue == null || passvalue.isEmpty) {
-          return "Password cannot be empty";
-        } else if (passvalue.length < 6) {
-          return "Password length should be atleast 6 characters";
-        }
-        return null;
-      },
+      // validator: (passvalue) {
+      //   if (passvalue == null || passvalue.isEmpty) {
+      //     return "Password cannot be empty";
+      //   } else if (passvalue.length < 6) {
+      //     return "Password length should be atleast 6 characters";
+      //   }
+      //   return null;
+      // },
     );
-    final confirmpasswordfield = TextFormField(
-      autofocus: false,
-      controller: confirmpassword,
-      keyboardType: TextInputType.visiblePassword,
-      onSaved: (value) {
-        confirmpassword.text = value!;
-      },
-      // textInputAction: TextInputAction.next,
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: " Enter Password ",
-        labelText: "Confirm Password",
-      ),
-      validator: (confvalue) {
-        if (confvalue == null || confvalue.isEmpty) {
-          return " This field is Required";
-        } else if (confvalue.length < 6) {
-          return "Password length should be atleast 6";
-        } else if (confvalue != User_password.text) {
-          return "Password does not match";
-        }
-      },
-    );
+    // final confirmpasswordfield = TextFormField(
+    //   autofocus: false,
+    //   controller: confirmpassword,
+    //   keyboardType: TextInputType.visiblePassword,
+    //   onSaved: (value) {
+    //     confirmpassword.text = value!;
+    //   },
+    //   // textInputAction: TextInputAction.next,
+    //   obscureText: true,
+    //   decoration: InputDecoration(
+    //     hintText: " Enter Password ",
+    //     labelText: "Confirm Password",
+    //   ),
+    //   validator: (confvalue) {
+    //     if (confvalue == null || confvalue.isEmpty) {
+    //       return " This field is Required";
+    //     } else if (confvalue.length < 6) {
+    //       return "Password length should be atleast 6";
+    //     } else if (confvalue != User_password.text) {
+    //       return "Password does not match";
+    //     }
+    //     return null;
+    //   },
+    // );
     return Material(
       color: Colors.white,
       child: Form(
@@ -147,26 +144,32 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   passwordfield,
                   SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
-                  confirmpasswordfield,
                   Text(error),
                   SizedBox(
                     height: 30,
                   ),
+                  // confirmpasswordfield,
+                  // Text(error),
+                  // SizedBox(
+                  //   height: 30,
+                  // ),
                   Material(
-                    color: Colors.red,
+                    color: MyTheme.redtheme,
                     borderRadius: BorderRadius.circular(15.0),
                     child: InkWell(
                       onTap: () => SingUp(),
-                      child: Container(
-                        width: 120,
-                        height: 40,
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Sign up",
-                          style: loginstyle,
-                        ),
+                      child: AnimatedContainer(
+                        duration: Duration(seconds: 4),
+                        child: Container(
+                            width: 120,
+                            height: 40,
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Sign up",
+                              style: loginstyle,
+                            )),
                       ),
                     ),
                   )

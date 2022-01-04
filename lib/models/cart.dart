@@ -1,7 +1,7 @@
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:flutter_project1/core/store.dart';
-import 'package:flutter_project1/models/catelog.dart';
+import 'package:NearMe/core/store.dart';
+import 'package:NearMe/models/catelog.dart';
 
 class CartModel {
   //catelog field

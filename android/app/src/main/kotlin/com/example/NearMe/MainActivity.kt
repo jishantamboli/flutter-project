@@ -1,4 +1,4 @@
-package com.example.flutter_project1
+package com.example.NearMe;
 
 import io.flutter.embedding.android.FlutterActivity
 

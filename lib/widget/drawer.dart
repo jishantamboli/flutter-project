@@ -1,8 +1,9 @@
+import 'package:NearMe/widget/themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project1/pages/login_page.dart';
-import 'package:flutter_project1/utils/routes.dart';
+import 'package:NearMe/pages/login_page.dart';
+import 'package:NearMe/utils/routes.dart';
 
 class MyDrawer extends StatelessWidget {
   // const MyDrawer({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class MyDrawer extends StatelessWidget {
           DrawerHeader(
             padding: EdgeInsets.zero,
             child: UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: Colors.red),
+                decoration: BoxDecoration(color: MyTheme.redtheme,),
                 margin: EdgeInsets.zero,
                 accountName: Text(
                   name,
@@ -33,7 +34,6 @@ class MyDrawer extends StatelessWidget {
                 ),
                 currentAccountPicture: CircleAvatar(
                   radius: 100.0,
-                  backgroundColor: Colors.white,
                   backgroundImage: AssetImage("assets/images/AccountImage.jpg"),
                 )),
           ),
@@ -53,11 +53,11 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              CupertinoIcons.home,
+              Icons.airline_seat_individual_suite_rounded,
               color: Colors.black,
             ),
             title: Text(
-              "LogOut",
+              "My Rooms",
               textScaleFactor: 1.2,
               style: TextStyle(
                 color: Colors.black,
@@ -80,6 +80,77 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             onTap: () => Navigator.pushNamed(context, MyRoutes.BookingRoute),
+          ),
+           ListTile(
+            leading: Icon(
+              Icons.language,
+              color: Colors.black,
+            ),
+            title: Text(
+              "Language A/a",
+              textScaleFactor: 1.2,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onTap: () => Navigator.pushNamed(context, MyRoutes.BookingRoute),
+          ),
+           ListTile(
+            leading: Icon(
+              Icons.share,
+              color: Colors.black,
+            ),
+            title: Text(
+              "Invite & earn",
+              textScaleFactor: 1.2,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onTap: () => Navigator.pushNamed(context, MyRoutes.BookingRoute),
+          ),
+          Divider( thickness: 2,),
+           ListTile(
+            leading: Icon(
+              Icons.privacy_tip,
+              color: Colors.black,
+            ),
+            title: Text(
+              "Privacy Policy",
+              textScaleFactor: 1.2,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onTap: () => Navigator.pushNamed(context, MyRoutes.BookingRoute),
+          ),
+           ListTile(
+            leading: Icon(
+              Icons.help,
+              color: Colors.black,
+            ),
+            title: Text(
+              "Need Help?",
+              textScaleFactor: 1.2,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onTap: () => Navigator.pushNamed(context, MyRoutes.BookingRoute),
+          ),
+           ListTile(
+            leading: Icon(
+             Icons.logout,
+              color: Colors.black,
+            ),
+            title: Text(
+              "LogOut",
+              textScaleFactor: 1.2,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onTap: () => Navigator.pushNamed(context, MyRoutes.LoginRoute),
           ),
         ],
       ),

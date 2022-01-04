@@ -1,7 +1,8 @@
+import 'package:NearMe/widget/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project1/models/cart.dart';
-import 'package:flutter_project1/models/catelog.dart';
-import 'package:flutter_project1/utils/routes.dart';
+import 'package:NearMe/models/cart.dart';
+import 'package:NearMe/models/catelog.dart';
+import 'package:NearMe/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Book extends StatefulWidget {
@@ -20,7 +21,7 @@ class _BookState extends State<Book> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: "Booking not Supported yet !!".text.make()));
     },
     style: ButtonStyle(
-    backgroundColor: MaterialStateProperty.all(Colors.red),
+    backgroundColor: MaterialStateProperty.all(MyTheme.redtheme),
     shape: MaterialStateProperty.all(StadiumBorder(),
     )
     ),

@@ -1,6 +1,6 @@
 {
-    "name": "flutter_project1",
-    "short_name": "flutter_project1",
+    "name": "NearMe",
+    "short_name": "NearMe",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

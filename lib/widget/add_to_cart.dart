@@ -1,8 +1,9 @@
+import 'package:NearMe/widget/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project1/core/store.dart';
-import 'package:flutter_project1/models/cart.dart';
-import 'package:flutter_project1/models/catelog.dart';
+import 'package:NearMe/core/store.dart';
+import 'package:NearMe/models/cart.dart';
+import 'package:NearMe/models/catelog.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AddToCart extends StatelessWidget {
@@ -14,14 +15,15 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VxState.watch(context,on: [AddMutation, Removemutation]);
+    VxState.watch(context, on: [AddMutation, Removemutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     bool isInCart = _cart.items.contains(catelog);
-    return ElevatedButton( 
+    return ElevatedButton(
       onPressed: () {
         if (!isInCart) {
           AddMutation(item: catelog);
-        }
+        } else
+          Removemutation(item: catelog);
       },
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Colors.white),
@@ -29,9 +31,13 @@ class AddToCart extends StatelessWidget {
             StadiumBorder(),
           )),
       child: isInCart
-          ? Icon(CupertinoIcons.heart_fill, color: Colors.red,)
+          ? Icon(
+              CupertinoIcons.heart_fill,
+              color: MyTheme.redtheme,
+            )
           : Icon(
-              CupertinoIcons.heart
+              CupertinoIcons.heart,
+              color: Colors.black,
             ),
     );
   }

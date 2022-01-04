@@ -1,6 +1,7 @@
+import 'package:NearMe/widget/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project1/core/store.dart';
-import 'package:flutter_project1/models/cart.dart';
+import 'package:NearMe/core/store.dart';
+import 'package:NearMe/models/cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
@@ -11,7 +12,7 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: MyTheme.redtheme,
         title: "Cart".text.color(Colors.white).make(),
       ),
       body: Column(
@@ -38,7 +39,7 @@ class _CartTotal extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
          "₹${_cart.totalPrice}"
-         .text.bold.xl4.color(Colors.red).make(),
+         .text.bold.xl4.color(MyTheme.redtheme).make(),
           30.widthBox,
           ElevatedButton(
             onPressed: () {
@@ -46,7 +47,7 @@ class _CartTotal extends StatelessWidget {
                   SnackBar(content: "Booking not supported yet !!".text.make()));
             },
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.red),
+                backgroundColor: MaterialStateProperty.all(MyTheme.redtheme),
                 padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 45,vertical: 12)),
                 shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)))
 
@@ -65,7 +66,8 @@ class _Cartlist extends StatelessWidget {
   Widget build(BuildContext context) {
     VxState.watch(context, on: [Removemutation]);
     return _cart.items.isEmpty
-        ? "OOOpppsss !!!!  Nothing to show".text.xl2.makeCentered()
+        ? Image.asset("assets/images/house2.gif")
+        //  "OOOpppsss !!!!  Nothing to show".text.xl2.makeCentered()
         : ListView.builder(
             itemCount: _cart.items.length,
             itemBuilder: (context, index) => ListTile(
